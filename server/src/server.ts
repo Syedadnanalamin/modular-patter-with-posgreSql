@@ -1,9 +1,21 @@
-import express from "express";
-const app = express()
+import express, { Application, Request, Response } from "express";
+import { Pool } from "pg";
+
+const app: Application = express()
 const port = 3000
 
-app.get('/', (req, res) => {
-    res.send('Hello World!')
+const pool = new Pool({
+    connectionString: process.env.DATABASE_URL,
+});
+
+
+app.get('/', (req: Request, res: Response) => {
+
+    res.status(200).json({
+        success: true,
+        message: "This is the route page"
+    })
+
 })
 
 app.listen(port, () => {
