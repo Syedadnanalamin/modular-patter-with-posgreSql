@@ -1,11 +1,13 @@
 import express, { Application, Request, Response } from "express";
 import { productRouter } from "./modules/products/product.route";
 import { userRoutes } from "./modules/users/users.route";
+import { authRoutes } from "./modules/auth/auth.route";
 const app: Application = express();
 app.use(express.json())
 
 app.use("/api/v1/products", productRouter);
 app.use("/api/v1/users", userRoutes);
+app.use("/api/v1/auth", authRoutes);
 
 app.get("/", (req: Request, res: Response) => {
 
